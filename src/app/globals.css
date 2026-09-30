@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   HOMETOWN HUB DESIGN TOKENS (Tailwind v4 theme)
+   A warm "paper & ink" palette: cream backgrounds, dark ink text,
+   terracotta accents (ember), deep green (leaf), and harvest gold.
+   These tokens become utilities automatically: bg-paper, text-ember, …
+   ========================================================================== */
+@theme {
+  /* Type: a bookish serif for headlines, a clean system sans for body text. */
+  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Colors */
+  --color-paper: #f7f2ea;
+  --color-paper-deep: #ede4d3;
+  --color-ink: #231e15;
+  --color-ember: #c4532c;
+  --color-ember-deep: #a3411f;
+  --color-leaf: #2e6b4f;
+  --color-gold: #c9962e;
+  --color-gold-deep: #96701b;
+
+  /* Soft, warm shadows for cards */
+  --shadow-warm: 0 1px 2px rgb(35 30 21 / 0.05), 0 6px 18px rgb(35 30 21 / 0.06);
+  --shadow-warm-lg: 0 2px 6px rgb(35 30 21 / 0.06), 0 16px 40px rgb(35 30 21 / 0.11);
+
+  /* Motion tokens → animate-fade-up, animate-toast-in */
+  --animate-fade-up: fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-toast-in: toast-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-ember);
+  color: #fff;
+}
+
+/* Thin, unobtrusive scrollbars that match the paper theme */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: rgb(35 30 21 / 0.18); border-radius: 999px; border: 2px solid var(--color-paper); }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* Skeleton shimmer used by loading states */
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, rgb(35 30 21 / 0.06) 25%, rgb(35 30 21 / 0.12) 37%, rgb(35 30 21 / 0.06) 63%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
